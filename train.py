@@ -13,14 +13,14 @@ import preprocess as pr
 # This function is speficic for Sentiment140 dataset
 def load_dataset():
     # Read data/tweets_100k/positive.txt
-    with open(DATA_FILEPATH + "/positive.txt", "r") as infile:
+    with open(DATA_FILEPATH + "/positive.txt", "r", encoding='utf-8') as infile:
         positive_tweets = infile.readlines()
 
     # Do the same with negative tweets
-    with open(DATA_FILEPATH + "/negative.txt", "r") as infile:
+    with open(DATA_FILEPATH + "/negative.txt", "r", encoding='utf-8') as infile:
         negative_tweets = infile.readlines()
 
-    X = positive_tweets + negative_tweets
+    X = negative_tweets + positive_tweets
     y = np.concatenate([np.full(len(negative_tweets), 0), np.full(len(positive_tweets), 4)])
 
     return X, y
@@ -127,3 +127,5 @@ def main():
 
     print("*"*50)
     print()
+
+main()
